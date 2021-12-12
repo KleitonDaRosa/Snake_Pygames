@@ -5,6 +5,7 @@ Titulo : Snake_version 0.1
 """
 import pygame
 from pygame.locals import *
+import random
 
 """
 *Anotaçoes pessoais
@@ -16,6 +17,23 @@ from pygame.locals import *
 
 WINDOWS_SIZE = (600 , 600)
 PIXEL_SIZE  = 10
+
+
+def collision(position1,position2):
+   return position1 == position2
+
+def out_limits(position):
+    if 0<= position[0] < WINDOWS_SIZE and 0<=position[i]<WINDOWS_SIZE:
+        return False
+    else:
+        return True
+
+#Funcao para colocar as maçacinha na tela
+def random_on_grid ():
+    x = random.randint(0,WINDOWS_SIZE[0])
+    y = random.randint(0,WINDOWS_SIZE[1])
+
+    return x//PIXEL_SIZE*PIXEL_SIZE,y//PIXEL_SIZE*PIXEL_SIZE
 
 pygame.init()
 #Criando a tela do jogo
@@ -58,6 +76,16 @@ while True:
         screen.blit(snake_surface,pos)
 
     #snake_position[0] = snake_position[0][0]+10, snake_position[0][1]
+    for i in range(len(snake_position)-1,0,-1):
+        if collision(snake_position[0],snake_position[i]):
+            pygame.quit()
+            quit()
+
+        snake_position[i] = snake_position[i-1]
+
+    if out_limits(snake_position[0]):
+        pygame.quit()
+        quit()
 
     if snake_diretion == K_UP:
         snake_position[0] = (snake_position[0][0], snake_position[0][1]-PIXEL_SIZE)
