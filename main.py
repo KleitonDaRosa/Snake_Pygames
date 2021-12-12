@@ -60,15 +60,14 @@ while True:
     #snake_position[0] = snake_position[0][0]+10, snake_position[0][1]
 
     if snake_diretion == K_UP:
-        snake_position[0] = (snake_position[0][0], snake_position[0][1]-10 )
+        snake_position[0] = (snake_position[0][0], snake_position[0][1]-PIXEL_SIZE)
     elif snake_diretion == K_DOWN:
         snake_position[0] = (snake_position[0][0], snake_position[0][1] + PIXEL_SIZE)
     elif snake_diretion == K_LEFT:
         snake_position[0] = (snake_position[0][0]-PIXEL_SIZE,snake_position[0][1])
     elif snake_diretion == K_RIGHT:
         snake_position[0] = (snake_position[0][0]+ PIXEL_SIZE, snake_position[0][1] )
-   
-      
+
     pygame.display.update()
 
 
